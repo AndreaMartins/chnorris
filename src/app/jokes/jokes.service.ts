@@ -10,6 +10,6 @@ export class JokesService {
 
   getRandom() {
     return this.http.get('http://api.icndb.com/jokes/random')
-      .map((res) => res.json());
+      .map((res: Response) => res.json());
   }
 }
