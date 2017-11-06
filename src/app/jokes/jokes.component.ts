@@ -5,7 +5,12 @@ import { JokesService } from './jokes.service';
   selector: 'jokes',
   template: `
     <h3> Jokes </h3>
-    <button (click)="getRandomJoke()"> Get Random Joke </button>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+      <span class="input-group-btn">
+        <button (click)="searchTitle()"> Get Random Joke </button>
+      </span>
+    </div>
     <pre>{{ joke | json }} </pre>
   `,
   providers: [JokesService]
@@ -17,7 +22,7 @@ export class JokesComponent implements OnInit {
 
   ngOnInit() {}
 
-  getRandomJoke() {
+  searchTitle() {
     this.jokes.getRandom()
       .subscribe((joke) => this.joke = joke);
   }

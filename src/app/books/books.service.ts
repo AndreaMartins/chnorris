@@ -4,13 +4,18 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class JokesService {
+export class BooksService {
+
+  bookTitle: string;
 
   constructor(private http: Http) { }
 
-  getRandom(): Observable<string> {
-    return this.http.get('http://api.icndb.com/jokes/random')
+  getBook( bookTitle: string): Observable <any[]> {
+    const data = this.bookTitle;
+    console.log (data)
+    return this.http.get('http://openlibrary.org/search.json?title='+ data)
       .map((res: Response) => res.json())
-      .map((res) => res.value.joke);
+      .map((res) => res.docs);
   }
+
 }
