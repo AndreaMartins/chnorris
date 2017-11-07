@@ -6,12 +6,12 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class BooksService {
 
-  bookTitle: string;
+
 
   constructor(private http: Http) { }
 
-  getBook( bookTitle: string): Observable <any[]> {
-    const data = this.bookTitle;
+  getBook(bookTitle): Observable <any[]> {
+    const data = bookTitle;
     console.log (data)
     return this.http.get('http://openlibrary.org/search.json?title='+ data)
       .map((res: Response) => res.json())

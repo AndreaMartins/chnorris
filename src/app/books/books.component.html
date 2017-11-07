@@ -1,3 +1,40 @@
-<p>
-  books works!
-</p>
+<div class="container my-3">
+  <h4> Books Searcher </h4>
+</div>
+
+<div class="container my-5">
+  <div class="input-group input-group-lg">
+    <input [(ngModel)]="titleInput"  type="text" class="form-control">
+    <span class="input-group-btn">
+      <button (click)="searchTitle()" class="btn btn-secondary" type="button"> Search By Title </button>
+    </span>
+  </div>
+</div>
+<div class=" d-flex container my-3" >
+  <div class="d-flex justify-content-between flex-wrap row">
+    <div *ngFor="let book of booksFound">
+      <div *ngIf="booksFound.indexOf(book)=== 0" >
+        <p>{{ book.title }}<p>
+      </div>
+      <div class="col-sm-3 my-3" *ngIf="booksFound.indexOf(book) !== 0" >
+          <div  style="height:200px;" class="my-3">
+            <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-M.jpg" class="rounded" style="height:200px;"/>
+          </div>
+          <div>
+               <div class= "row">
+                 <div class= "col-3" style="height:80px;">
+                   <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-M.jpg" class="rounded" style="height:60px;"/>
+                 </div>
+                 <div class= "col-9">
+                   <p>{{ book.author_name }}</p>
+                 </div>
+               </div>
+               <div style="height:100px;" >
+                 <p>{{ book.title }}</p>
+               </div>
+               <p>{{ book.first_publish_year}} - ISBN</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
