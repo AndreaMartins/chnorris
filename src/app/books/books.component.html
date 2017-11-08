@@ -11,30 +11,45 @@
   </div>
 </div>
 <div class=" d-flex container my-3" >
-  <div class="d-flex justify-content-between flex-wrap row">
-    <div *ngFor="let book of booksFound">
-      <div *ngIf="booksFound.indexOf(book)=== 0" >
-        <p>{{ book.title }}<p>
-      </div>
-      <div class="col-sm-3 my-3" *ngIf="booksFound.indexOf(book) !== 0" >
-          <div  style="height:200px;" class="my-3">
-            <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-M.jpg" class="rounded" style="height:200px;"/>
+
+  <div class="container">
+
+      <div class="row" >
+        <div  *ngFor="let book of booksFound" class="container-fluid">
+          <div class="container-fluid" *ngIf="booksFound.indexOf(book)=== 0" >
+              <div class="">
+                <p>{{ book.title }}<p>
+              </div>
+              <div class="row">
+                <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-L.jpg" class="rounded"/>
+              </div>
           </div>
-          <div>
-               <div class= "row">
-                 <div class= "col-3" style="height:80px;">
-                   <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-M.jpg" class="rounded" style="height:60px;"/>
-                 </div>
-                 <div class= "col-9">
-                   <p>{{ book.author_name }}</p>
-                 </div>
-               </div>
-               <div style="height:100px;" >
-                 <p>{{ book.title }}</p>
-               </div>
-               <p>{{ book.first_publish_year}} - ISBN</p>
-          </div>
+        </div>
       </div>
-    </div>
+
+      <div class="row">
+
+          <div class="col-sm-3 my-3" *ngFor="let book of booksFound" >
+            <div  style="height:200px;" class="my-3">
+              <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-M.jpg" class="rounded" style="height:200px;"/>
+            </div>
+            <div>
+                 <div class= "row">
+                   <div class= "col-4" style="height:80px;">
+                     <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-S.jpg" class="rounded" style="height:60px;"/>
+                   </div>
+                   <div class= "col-8">
+                     <p>{{ book.author_name }}</p>
+                   </div>
+                 </div>
+                 <div style="height:100px;" >
+                   <p>{{ book.title }}</p>
+                 </div>
+                 <p>{{ book.first_publish_year}} - ISBN</p>
+            </div>
+          </div>
+
+      </div>
+
   </div>
 </div>
