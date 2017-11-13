@@ -1,55 +1,78 @@
-<div class="container my-3">
-  <h4> Books Searcher </h4>
-</div>
-
-<div class="container my-5">
-  <div class="input-group input-group-lg">
-    <input [(ngModel)]="titleInput"  type="text" class="form-control">
-    <span class="input-group-btn">
-      <button (click)="searchTitle()" class="btn btn-secondary" type="button"> Search By Title </button>
-    </span>
+<div class="sticky-top " style="background-color: white;">
+  <div class="container my-3">
+    <h4> Books Searcher </h4>
+  </div>
+  <div class="container my-3">
+    <div class="input-group input-group-lg py-3">
+      <input [(ngModel)]="titleInput"  type="text" class="form-control">
+      <span class="input-group-btn">
+        <button (click)="searchTitle()" class="btn btn-secondary" type="button"> Search By Title </button>
+      </span>
+    </div>
   </div>
 </div>
-<div class=" d-flex container my-3" >
 
-  <div class="container">
+<div class="container my-3" >
 
       <div class="row" >
-        <div  *ngFor="let book of booksFound" class="container-fluid">
-          <div class="container-fluid" *ngIf="booksFound.indexOf(book)=== 0" >
-              <div class="">
-                <p>{{ book.title }}<p>
-              </div>
-              <div class="row">
-                <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-L.jpg" class="rounded"/>
-              </div>
+        <div class="col" >
+          <div  *ngFor="let book of booksFound" >
+            <div  *ngIf="booksFound.indexOf(book)=== 0" >
+                <div class="d-flex justify-content-between flex-wrap">
+                  <div class="col-sm-6" style=" background-color: rgb(134,142,150);">
+                    <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-L.jpg" class="img-fluid rounded"/>
+                  </div>
+                  <div class="col-sm-6 d-flex flex-column justify-content-between">
+                    <div class="d-flex row" style="background-color: #f1f1f1; height: 100%;">
+                      <div class= "d-flex col-4 justify-content-center">
+                        <img src="http://covers.openlibrary.org/a/olid/{{book.author_key}}-M.jpg"
+                            onError="this.src='assets/images/default.png';"
+                            alt="..."
+                            class="align-self-center rounded" style="max-height: 120px; max-width: 50px;"/>
+                      </div>
+                      <div class= "d-flex col-8 justify-content-left">
+                        <p class="align-self-center" style="font-size: 2em" >{{ book.author_name }}</p>
+                      </div>
+                    </div>
+                    <div class="d-flex row justify-content-center" style="background-color: #f1f1f1; height: 100%;">
+                            <p class= "text-center align-self-center font-weight-bold" style="font-size: 2em" >{{ book.title }}</p>
+                    </div>
+                    <div  class="d-flex row justify-content-center" style="background-color: #f1f1f1; height: 100%;">
+                          <p class= "align-self-center text-center " style="font-size: 1.2em; margin-bottom: 0; " >{{ book.first_publish_year}} - ISBN</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="row">
-
           <div class="col-sm-3 my-3" *ngFor="let book of booksFound" >
-            <div  style="height:200px;" class="my-3">
-              <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-M.jpg" class="rounded" style="height:200px;"/>
+            <div class="d-flex my-1 justify-content-center" style="height: 200px; background-color: rgb(134,142,150);">
+              <img *ngIf="!book.cover_i" src="assets/images/bookdefault.jpg" style="max-height: 200px; max-width: 150px;">
+              <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-L.jpg" class="align-self-center rounded" style="max-height: 200px; max-width: 150px;"/>
             </div>
-            <div>
-                 <div class= "row">
-                   <div class= "col-4" style="height:80px;">
-                     <img src="http://covers.openlibrary.org/b/id/{{book.cover_i}}-S.jpg" class="rounded" style="height:60px;"/>
-                   </div>
-                   <div class= "col-8">
-                     <p>{{ book.author_name }}</p>
-                   </div>
-                 </div>
-                 <div style="height:100px;" >
-                   <p>{{ book.title }}</p>
-                 </div>
-                 <p>{{ book.first_publish_year}} - ISBN</p>
+            <div class="container my-1 ">
+              <div class= "d-flex row my-1" style="background-color: #f1f1f1; height:120px;">
+                <div class= "d-flex col-4" >
+                  <img src="http://covers.openlibrary.org/a/olid/{{book.author_key}}-S.jpg"
+                     onError="this.src='assets/images/default.png';"
+                     alt="..."
+                     class="align-self-center rounded" style="max-height: 60px; max-width: 50px;"/>
+                </div>
+                  <div class= "col-8 align-self-center">
+                  <p style="font-size: 0.9em" >{{ book.author_name }}</p>
+                </div>
+              </div>
+              <div class= "d-flex row my-1 align-self-center justify-content-center px-2" style="background-color: #f1f1f1; height:120px;">
+                <p class= "align-self-center text-center font-weight-bold" style="font-size: 0.9em" >{{ book.title }}</p>
+              </div>
+              <div class= "d-flex row my-1 align-self-center justify-content-center px-2 " style="background-color: #868e96; height:40px;">
+                <p class= "align-self-center text-center " style="font-size: 0.8em; margin-bottom: 0; color: #f1f1f1;" >{{ book.first_publish_year}} - ISBN</p>
+              </div>
             </div>
           </div>
-
       </div>
-
-  </div>
+      
 </div>
